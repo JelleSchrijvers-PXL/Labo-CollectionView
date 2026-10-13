@@ -1,5 +1,6 @@
-﻿using System.Linq;
-using MiniFigs.Models;
+﻿using MiniFigs.Models;
+using System.Linq;
+using System.Windows.Input;
 
 namespace MiniFigs
 {
@@ -8,6 +9,16 @@ namespace MiniFigs
         public MainPage()
         {
             InitializeComponent();
+
+            ICommand refreshCommand = new Command(() =>
+            {
+                // Reload data
+                charactersCollectionView.ItemsSource = Data.DataRepository.GetAllCharacters();
+
+                refreshLabel.Text = "Refreshed @ " + DateTime.Now.ToShortTimeString();
+                refreshView.IsRefreshing = false;
+            });
+            refreshView.Command = refreshCommand;
         }
 
         private void OnLoadDataClicked(object sender, EventArgs e)
@@ -37,6 +48,15 @@ namespace MiniFigs
         {
             selectionLabel.Text = string.Join(
                 ",", e.CurrentSelection.Cast<MiniFig>().Select(miniFig => miniFig.Name));
+        }
+
+        private void OnFavoriteSwipeItemInvoked(object sender, EventArgs e)
+        {
+            var swipeview = sender as SwipeItem;
+            var item = swipeview.CommandParameter.ToString();
+            swipeview.IconImageSource = "solidstar.svg";
+
+            favouriteLabel.Text = $"Favorited {item}";
         }
     }
 }
