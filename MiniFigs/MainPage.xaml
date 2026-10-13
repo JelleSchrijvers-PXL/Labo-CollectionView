@@ -1,11 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MiniFigs.MainPage">
+             xmlns:models="clr-namespace:MiniFigs.Models"
+             x:Class="MiniFigs.MainPage" Appearing="ContentPage_Appearing">
 
     <Grid>
         <CollectionView x:Name="charactersCollectionView" Margin="5">
-
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:MiniFig">
+                    <Border StrokeThickness="1" Stroke="Black" Margin="2" Padding="2">
+                        <Grid ColumnDefinitions="auto,*" RowDefinitions="*,*" Margin="10" Padding="5">
+                            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Source="{Binding ImageUrl}" HeightRequest="60"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Race}" FontSize="Small" FontAttributes="Italic"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
 
