@@ -4,8 +4,9 @@
              x:Class="MiniFigs.MainPage">
 
     <Grid>
-        <!--Add collectionview here-->
-        
+        <CollectionView x:Name="charactersCollectionView">
+
+        </CollectionView>
     </Grid>
 
 </ContentPage>

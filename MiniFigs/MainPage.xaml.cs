@@ -5,6 +5,8 @@
         public MainPage()
         {
             InitializeComponent();
+
+            charactersCollectionView.ItemsSource = GetData();
         }
 
         private List<string> GetData()
