@@ -4,7 +4,7 @@
              x:Class="MiniFigs.MainPage">
 
     <Grid>
-        <CollectionView x:Name="charactersCollectionView">
+        <CollectionView x:Name="charactersCollectionView" Margin="5">
 
         </CollectionView>
     </Grid>
